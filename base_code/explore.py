@@ -18,39 +18,6 @@ def find_row_number(df,column,filter_value):
 def get_record(df,row_position):
     return df.loc[row_position]
 
-def univar(df,col,freq_type):
-    ft = {
-        "absoluta":{
-            "freq_type_index":df[col].value_counts().index,
-            "freq_type_values":df[col].value_counts().values
-            },
-        "relativa":{
-            "freq_type_index":df[col].value_counts(normalize = True).index,
-            "freq_type_values":df[col].value_counts(normalize = True).values
-            },
-        "acumulada":{
-            "freq_type_index":df[col].value_counts().index,
-            "freq_type_values":df[col].value_counts(normalize = True).cumsum().values
-            }
-    }
-    
-    freq_y = ft[freq_type]["freq_type_values"]
-    cat_x = ft[freq_type]["freq_type_index"]
-    
-    # Crear "canvas"
-    fig, ax = plt.subplots(figsize = (20,10))
-
-    # Graficar variable en el "canvas"
-    _ = sns.barplot(data = df,x = cat_x,y = freq_y,ax = ax)
-
-    # Gira los ticks
-    _ = ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
-    
-    # Pon título y nombre a ejes
-    _ = ax.set_title(f"Frecuencia {freq_type} para la variable: {col}")
-    _ = ax.set_xlabel("Categorías")
-    _ = ax.set_ylabel("Frecuencia")
-
 
 def remove_outliers(dataframe,column):
     q3, q1 = np.percentile(dataframe[column],[75,25])
@@ -84,13 +51,3 @@ def df_trans(in_df,ht,var):
             out_df.loc[c,"total_compras"] = get_record(in_df,find_row_number(in_df,var,gen))
             c+=1
     return out_df
-
-
-def create_boxplot(dataframe,column):
-    # Creo boxplot para identificar valores atípicos.
-    # Crear "canvas"
-    fig, ax = plt.subplots(figsize = (20,10))
-    # Dibujar en canvas
-    _ = sns.boxplot(data=dataframe,x=column,color="cornflowerblue",linewidth=3,ax=ax)
-    _ = ax.set_title("Boxplot")
-    _ = ax.set_xlabel(column)
