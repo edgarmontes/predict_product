@@ -2,7 +2,7 @@ Mastery Program
 Data Science
 Proyecto Final: Machine Learning
 
-Descripción del Dataset
+Descripción del Dataset\n
 ● Customer Personality Analysis 
 Fuente: kaggle.com
 https://www.kaggle.com/imakash3011/customer-personality-analysis
