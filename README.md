@@ -2,9 +2,9 @@ Mastery Program
 Data Science
 Proyecto Final: Machine Learning
 
-- Descripción del Dataset
-● Customer Personality Analysis 
-- Fuente: kaggle.com
+Descripción del Dataset
+- Customer Personality Analysis 
+Fuente: kaggle.com
 https://www.kaggle.com/imakash3011/customer-personality-analysis
 
 - El Análisis de Personalidad del Cliente es un estudio detallado sobre los clientes ideales de 
@@ -20,12 +20,12 @@ ventas que  ayudan  a  los  directivos  a  realizar  el  presupuesto  de  ventas
 elaborar  otros  presupuestos,  como  el  de  compras  de  insumos  o  mercadería,  producción, 
 requerimiento de personal, flujo de efectivo, etc.
 Algunos beneficios del pronóstico de ventas:
-- ● Brinda la posibilidad de planear las compras, es decir, saber el stock necesario para una 
+- Brinda la posibilidad de planear las compras, es decir, saber el stock necesario para una 
 determinada actividad.
-- ● Permite controlar el flujo de efectivo, es decir, cuánto será necesario invertir.
-- ● Reduce el desperdicio de material y/o insumos.
+- Permite controlar el flujo de efectivo, es decir, cuánto será necesario invertir.
+- Reduce el desperdicio de material y/o insumos.
 
-- Context Problem Statement
+Context Problem Statement
 
 - Customer Personality Analysis is a detailed analysis of a company’s ideal customers. It helps a business to better understand its customers and makes it easier for them to modify products according to the specific needs, behaviors and concerns of different types of customers.
 
