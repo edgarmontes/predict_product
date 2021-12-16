@@ -48,9 +48,10 @@ def random_forest_regressor(x_train,y_train,x_test,y_test):
 
 def manual_model(x_train,y_train,x_test,y_test):
     import pandas as pd
+    from sklearn.preprocessing import StandardScaler
     df_manual_model = pd.DataFrame()
     cols = str(list(x_train.columns))
-    x_norm = df_normalization(x_train)
+    x_norm = x_train#StandardScaler().fit_transform(x_train)
     # Build Linear Rgression
     df_manual_model.loc[0,"Model"] = "Linear Regression"
     df_manual_model.loc[0,"Columns"] = cols
@@ -71,9 +72,10 @@ def manual_model(x_train,y_train,x_test,y_test):
 
 def final_model(x_train,y_train,x_test,y_test):
     import pandas as pd
+    from sklearn.preprocessing import StandardScaler
     df_manual_model = pd.DataFrame()
     cols = str(list(x_train.columns))
-    x_norm = df_normalization(x_train)
+    x_norm = x_train#StandardScaler().fit_transform(x_train)
     # Build Linear Rgression
     df_manual_model.loc[0,"Model"] = "Linear Regression"
     df_manual_model.loc[0,"Columns"] = cols
