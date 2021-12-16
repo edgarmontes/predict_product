@@ -1,5 +1,6 @@
 ##################### Variable Normalization #####################
 def df_normalization(dataframe):
+    import numpy as np
     cols = dataframe.select_dtypes(np.number).columns
     dataframe_normalized = dataframe[cols].transform(lambda x: (x-x.min())/(x.max()-x.min()))
     return dataframe_normalized
