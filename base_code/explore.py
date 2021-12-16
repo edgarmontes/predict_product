@@ -24,6 +24,7 @@ def remove_outliers(dataframe,column):
     iqr = q3-q1
     lower_bound = q1 - (1.5 * iqr)
     upper_bound = q3 + (1.5 * iqr)
+    dataframe = dataframe.sort_values(by=[column])
     dataframe = dataframe[(dataframe[column] >= lower_bound) & (dataframe[column] <= upper_bound)]
     return dataframe
     
