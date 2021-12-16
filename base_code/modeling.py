@@ -1,3 +1,9 @@
+##################### Variable Normalization #####################
+def df_normalization(dataframe):
+    cols = dataframe.select_dtypes(np.number).columns
+    dataframe_normalized = dataframe[cols].transform(lambda x: (x-x.min())/(x.max()-x.min()))
+    return dataframe_normalized
+
 def linear_regression(x_train,y_train,x_test,y_test):
     from sklearn.linear_model import LinearRegression
     from sklearn.metrics import  mean_squared_error
@@ -43,10 +49,11 @@ def manual_model(x_train,y_train,x_test,y_test):
     import pandas as pd
     df_manual_model = pd.DataFrame()
     cols = str(list(x_train.columns))
+    x_norm = df_normalization(x_train)
     # Build Linear Rgression
     df_manual_model.loc[0,"Model"] = "Linear Regression"
     df_manual_model.loc[0,"Columns"] = cols
-    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test = linear_regression(x_train,y_train,x_test,y_test)
+    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test = linear_regression(x_norm,y_train,x_test,y_test)
     df_manual_model.loc[0,"r2 Train"] = train_score_r2_LR
     df_manual_model.loc[0,"r2 Validate"] = test_score_r2_LR
     df_manual_model.loc[0,"RMSE Train"] = rmse_train
@@ -54,7 +61,7 @@ def manual_model(x_train,y_train,x_test,y_test):
     # Build Random Forest Regressor
     df_manual_model.loc[1,"Model"] = "Random Forest Regressor"
     df_manual_model.loc[1,"Columns"] = cols
-    train_score_r2_RFR,test_score_r2_RFR,rmse_train,rmse_test = random_forest_regressor(x_train,y_train,x_test,y_test)
+    train_score_r2_RFR,test_score_r2_RFR,rmse_train,rmse_test = random_forest_regressor(x_norm,y_train,x_test,y_test)
     df_manual_model.loc[1,"r2 Train"] = train_score_r2_RFR
     df_manual_model.loc[1,"r2 Validate"] = test_score_r2_RFR
     df_manual_model.loc[1,"RMSE Train"] = rmse_train
@@ -65,10 +72,11 @@ def final_model(x_train,y_train,x_test,y_test):
     import pandas as pd
     df_manual_model = pd.DataFrame()
     cols = str(list(x_train.columns))
+    x_norm = df_normalization(x_train)
     # Build Linear Rgression
     df_manual_model.loc[0,"Model"] = "Linear Regression"
     df_manual_model.loc[0,"Columns"] = cols
-    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test = linear_regression(x_train,y_train,x_test,y_test)
+    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test = linear_regression(x_norm,y_train,x_test,y_test)
     df_manual_model.loc[0,"r2 Train"] = train_score_r2_LR
     df_manual_model.loc[0,"r2 Test"] = test_score_r2_LR
     df_manual_model.loc[0,"RMSE Train"] = rmse_train
