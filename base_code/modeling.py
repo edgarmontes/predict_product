@@ -51,12 +51,11 @@ def manual_model(x_train,y_train,x_test,y_test):
     df_manual_model = pd.DataFrame()
     cols = str(list(x_train.columns))
     x_norm = x_train#StandardScaler().fit_transform(x_train)
-    x_norm = x_train#StandardScaler().fit_transform(x_train)
-    x_norm_tes = StandardScaler().fit_transform(x_test)
+    x_norm_test = x_test#StandardScaler().fit_transform(x_test)
     # Build Linear Rgression
     df_manual_model.loc[0,"Model"] = "Linear Regression"
     df_manual_model.loc[0,"Columns"] = cols
-    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test,coef,intercept,model_LR = linear_regression(x_norm,y_train,x_norm_tes,y_test)
+    train_score_r2_LR,test_score_r2_LR,rmse_train,rmse_test,coef,intercept,model_LR = linear_regression(x_norm,y_train,x_norm_test,y_test)
     df_manual_model.loc[0,"r2 Train"] = train_score_r2_LR
     df_manual_model.loc[0,"r2 Validate"] = test_score_r2_LR
     df_manual_model.loc[0,"RMSE Train"] = rmse_train
