@@ -1,8 +1,8 @@
 """
 In Jupyter Notebook:
-from base_code.explore import univar
+from base_code.explore import get_record
 
-univar(df,col,"relativa"); # <- "absoluta" "relativa" "acumulada"
+get_record(df,row_position)
 """
 import pandas as pd
 import numpy as np
