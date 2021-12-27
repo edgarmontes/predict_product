@@ -99,7 +99,7 @@ param_grid_2 = [{"model":[RandomForestRegressor()],
                  "model__criterion":["squared_error","absolute_error"],
                  "model__splitter":["best","random"]}]
 #
-grid_search_cv = GridSearchCV(estimator=multi_model,param_grid=param_grid_2,cv=5,scoring="neg_root_mean_squared_error")
+grid_search_cv = GridSearchCV(estimator=multi_model,param_grid=param_grid_1,cv=5,scoring="neg_root_mean_squared_error")
 #
 grid_search_cv.fit(x_train,y_train)
 #
