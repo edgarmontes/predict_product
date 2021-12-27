@@ -12,16 +12,6 @@ plt.style.use(["ggplot","seaborn-white"])
 #plt.style.use(['fivethirtyeight','seaborn-poster'])
 sns.set_style('whitegrid')
 
-# Statistics
-import scipy.stats as st
-from statsmodels.stats.outliers_influence import variance_inflation_factor
-
-# Custom Libraries
-#from base_code.describe_df import data_description
-#from base_code.explore import remove_outliers,find_upper_outliers, find_lower_outliers,get_record#, create_boxplot
-#from base_code.feature_selection import variable_normalization,select_kbest
-#from base_code.modeling import manual_model,final_model,linear_regression,random_forest_regressor
-
 # Libreries for modeling
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
