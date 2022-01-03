@@ -41,7 +41,7 @@ def remove_outliers(dataframe,column):
     dataframe = dataframe[(dataframe[column] >= lower_bound) & (dataframe[column] <= upper_bound)]
     return dataframe
 #=======================================================
-def multi_mod(df):
+def multi_mod(df,cols_traditional_model = ["mnt_wines","income","client_age","total_children"]):
     #
     ###df = pd.read_csv("data/marketing_campaign.csv","\t")
     #
@@ -49,7 +49,7 @@ def multi_mod(df):
     #
     df.dropna(inplace=True)
     #
-    df.drop(columns = ['z_costcontact', 'z_revenue'], inplace = True)
+    #df.drop(columns = ['z_costcontact', 'z_revenue'], inplace = True)
     #
     current_date = datetime.datetime.now()
     date = current_date.date()
@@ -61,7 +61,7 @@ def multi_mod(df):
     #
     df["total_children"] = df["kidhome"] + df["teenhome"]
     #
-    cols_traditional_model = ["mnt_wines","income","client_age","total_children"]
+    #cols_traditional_model = ["mnt_wines","income","client_age","total_children"]
     df_traditional_model = df[cols_traditional_model]
     x = df_traditional_model[cols_traditional_model[1:]]
     y = df_traditional_model[cols_traditional_model[0]]
@@ -101,7 +101,7 @@ def multi_mod(df):
     #
     grid_search_cv.fit(x_train,y_train)
     #
-    results = pd.DataFrame(grid_search_cv.cv_results_).sort_values(by='rank_test_score')
+    results = pd.DataFrame(grid_search_cv.cv_results_).sort_values(by="rank_test_score")
     print("\n",results.shape)
     print("\n",results.head(12))
     print("\n",results.tail(12))
