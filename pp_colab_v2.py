@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 plt.style.use(["ggplot","seaborn-white"])
 #plt.style.use(['fivethirtyeight','seaborn-poster'])
 sns.set_style('whitegrid')
+from IPython.display import display,HTML
 
 # Libreries for modeling
 from sklearn.model_selection import train_test_split
@@ -103,8 +104,8 @@ def multi_mod(df,cols_traditional_model = ["mnt_wines","income","client_age","to
     #
     results = pd.DataFrame(grid_search_cv.cv_results_).sort_values(by="rank_test_score")
     print("\n",results.shape)
-    print("\n",results.head(12))
-    print("\n",results.tail(12))
+    display(HTML(results.head(12).to_html()))
+    display(HTML(results.tail(12).to_html()))
     #
     print("\nBest score: ",grid_search_cv.best_score_)
     #
@@ -121,7 +122,6 @@ def multi_mod(df,cols_traditional_model = ["mnt_wines","income","client_age","to
     x_test["residuals"] = x_test["y_test"] - x_test["y_pred"]
     x_test["abs_percent"] = (round(x_test["residuals"]/x_test["y_test"],6)*100).abs()
     #
-    print("\n",x_test.sort_values(by=["abs_percent"],ascending=True).head(60))
+    display(HTML(x_test.sort_values(by=["abs_percent"],ascending=True).head(60).to_html()))
     #
-    print("\n",x_test.sort_values(by=["abs_percent"],ascending=False).head(60))
-
+    display(HTML(x_test.sort_values(by=["abs_percent"],ascending=False).head(60).to_html()))
