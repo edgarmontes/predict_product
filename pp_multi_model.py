@@ -42,7 +42,7 @@ def remove_outliers(dataframe,column):
     dataframe = dataframe[(dataframe[column] >= lower_bound) & (dataframe[column] <= upper_bound)]
     return dataframe
 #=======================================================
-def multi_mod(df,cols_traditional_model = ["mnt_wines","income","client_age","total_children"]):
+def multi_mod(df,param_grid,cols_traditional_model = ["mnt_wines","income","client_age","total_children"]):
     #
     ###df = pd.read_csv("data/marketing_campaign.csv","\t")
     #
@@ -71,34 +71,7 @@ def multi_mod(df,cols_traditional_model = ["mnt_wines","income","client_age","to
     #
     multi_model = Pipeline(steps=[("Scaler",StandardScaler()),("model",LinearRegression())])
     #
-    param_grid_1 = [{"model":[LinearRegression()],
-                "model__fit_intercept":[True,False],
-                "model__copy_X":[True]},
-                {"model":[RandomForestRegressor()],
-                "model__max_depth":[1,2,3,4,5,6],
-                "model__n_estimators":[100,200,300,400,500],
-                "model__min_samples_split":[2,3,4,5,6],
-                "model__max_samples":np.linspace(0.01,1,10),
-                "model__bootstrap":[True]},
-                {"model":[KNeighborsRegressor()],
-                "model__n_neighbors":[1,2,3,4,5,6],
-                "model__algorithm":["auto","ball_tree","kd_tree","brute"],
-                "model__leaf_size":[30,60,90]},
-                {"model":[DecisionTreeRegressor()],
-                "model__criterion":["squared_error","absolute_error"],
-                "model__splitter":["best","random"],
-                "model__max_depth":[1,2,3,4,5,6]}]
-    #
-    param_grid_2 = [{"model":[RandomForestRegressor()],
-                    "model__max_depth":[1,2,3]},
-                    {"model":[KNeighborsRegressor()],
-                    "model__n_neighbors":[1,2,3],
-                    "model__algorithm":["auto","ball_tree","kd_tree","brute"]},
-                    {"model":[DecisionTreeRegressor()],
-                    "model__criterion":["squared_error","absolute_error"],
-                    "model__splitter":["best","random"]}]
-    #
-    grid_search_cv = GridSearchCV(estimator=multi_model,param_grid=param_grid_1,cv=5,scoring="neg_root_mean_squared_error")
+    grid_search_cv = GridSearchCV(estimator=multi_model,param_grid=param_grid,cv=5,scoring="neg_root_mean_squared_error")
     #
     grid_search_cv.fit(x_train,y_train)
     #
